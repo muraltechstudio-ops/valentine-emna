@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 Pour Emna 💝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d1f3d 50%, #1a0a0a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Conteneur principal */
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        /* Titre principal */
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: #ff6b9d;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5),
+                         0 0 40px rgba(255, 107, 157, 0.3);
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 107, 157, 0.8), 0 0 50px rgba(255, 107, 157, 0.5); }
+        }
+
+        /* Nom Emna */
+        .name {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 12vw, 7rem);
+            background: linear-gradient(45deg, #ff6b9d, #ff8a80, #ffab91, #ff6b9d);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Message */
+        .message {
+            color: #f8bbd9;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            max-width: 600px;
+            line-height: 1.8;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Cœur qui bat */
+        .heart-container {
+            position: relative;
+            margin: 30px auto;
+        }
+
+        .beating-heart {
+            font-size: clamp(4rem, 15vw, 8rem);
+            animation: beat 1s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .beating-heart:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+        }
+
+        /* Cœurs flottants */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            animation: float-up linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Étoiles scintillantes */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Bouton */
+        .love-btn {
+            background: linear-gradient(45deg, #ff6b9d, #ff8a80);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 2s;
+        }
+
+        .love-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Message secret */
+        .secret-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .secret-message.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .secret-content {
+            text-align: center;
+            padding: 40px;
+            max-width: 500px;
+        }
+
+        .secret-content h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff6b9d;
+            margin-bottom: 20px;
+        }
+
+        .secret-content p {
+            color: #f8bbd9;
+            font-size: 1.3rem;
+            line-height: 2;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: 2px solid #ff6b9d;
+            color: #ff6b9d;
+            padding: 10px 30px;
+            margin-top: 30px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #ff6b9d;
+            color: white;
+        }
+
+        /* Pétales */
+        .petal {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(45deg, #ff6b9d, #ff8a80);
+            border-radius: 50% 0 50% 50%;
+            animation: fall linear infinite;
+            z-index: 2;
+            opacity: 0.6;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Étoiles -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Cœurs flottants -->
+    <div class="floating-hearts" id="floating-hearts"></div>
+
+    <!-- Contenu principal -->
+    <div class="container">
+        <h1 class="title">Joyeuse Saint-Valentin</h1>
+        <h2 class="name">Emna ❤️</h2>
+        
+        <div class="heart-container">
+            <div class="beating-heart" onclick="showSecret()">💝</div>
+        </div>
+
+        <p class="message">
+            Tu es la plus belle chose qui me soit arrivée dans la vie.<br>
+            Chaque jour à tes côtés est un cadeau précieux.<br>
+            Je t'aime plus que les mots ne peuvent l'exprimer. 💕
+        </p>
+
+        <button class="love-btn" onclick="explodeHearts()">
+            💖 Clique ici mon amour 💖
+        </button>
+    </div>
+
+    <!-- Message secret -->
+    <div class="secret-message" id="secret">
+        <div class="secret-content">
+            <h2>Mon Amour... 💕</h2>
+            <p>
+                Tu es mon soleil, ma lune et toutes mes étoiles ✨<br><br>
+                Avec toi, chaque moment devient magique.<br><br>
+                Je suis l'homme le plus chanceux du monde<br>
+                parce que tu as choisi de partager ta vie avec moi.<br><br>
+                Je t'aime infiniment, Emna 💝
+            </p>
+            <button class="close-btn" onclick="hideSecret()">Fermer avec un bisou 😘</button>
+        </div>
+    </div>
+
+    <script>
+        // Créer les étoiles
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Créer les cœurs flottants
+        function createFloatingHearts() {
+            const container = document.getElementById('floating-hearts');
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘', '🌹'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                container.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 10000);
+            }, 500);
+        }
+
+        // Explosion de cœurs
+        function explodeHearts() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.textContent = ['❤️', '💕', '💖', '💗', '💝'][Math.floor(Math.random() * 5)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    heart.style.fontSize = '30px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    document.body.appendChild(heart);
+
+                    const angle = (Math.random() * 360) * (Math.PI / 180);
+                    const velocity = Math.random() * 300 + 200;
+                    const vx = Math.cos(angle) * velocity;
+                    const vy = Math.sin(angle) * velocity;
+
+                    let x = 0, y = 0, opacity = 1;
+                    const animate = () => {
+                        x += vx * 0.016;
+                        y += vy * 0.016;
+                        opacity -= 0.02;
+                        heart.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+                        heart.style.opacity = opacity;
+                        
+                        if (opacity > 0) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            heart.remove();
+                        }
+                    };
+                    animate();
+                }, i * 30);
+            }
+        }
+
+        // Afficher message secret
+        function showSecret() {
+            document.getElementById('secret').classList.add('show');
+        }
+
+        // Cacher message secret
+        function hideSecret() {
+            document.getElementById('secret').classList.remove('show');
+        }
+
+        // Créer les pétales
+        function createPetals() {
+            for (let i = 0; i < 15; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                petal.style.animationDelay = Math.random() * 10 + 's';
+                document.body.appendChild(petal);
+            }
+        }
+
+        // Initialisation
+        createStars();
+        createFloatingHearts();
+        createPetals();
+    </script>
+</body>
+</html>
